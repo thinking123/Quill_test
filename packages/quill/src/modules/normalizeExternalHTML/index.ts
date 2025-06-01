@@ -1,5 +1,5 @@
-import googleDocs from './normalizers/googleDocs.js';
-import msWord from './normalizers/msWord.js';
+import googleDocs from './normalizers/googleDocs';
+import msWord from './normalizers/msWord';
 
 const NORMALIZERS = [msWord, googleDocs];
 

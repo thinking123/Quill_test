@@ -1,4 +1,4 @@
-import Embed from '../blots/embed.js';
+import Embed from '../blots/embed';
 
 class Formula extends Embed {
   static blotName = 'formula';

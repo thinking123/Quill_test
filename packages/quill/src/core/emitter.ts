@@ -1,6 +1,6 @@
 import { EventEmitter } from 'eventemitter3';
-import instances from './instances.js';
-import logger from './logger.js';
+import instances from './instances';
+import logger from './logger';
 
 const debug = logger('quill:events');
 const EVENTS = ['selectionchange', 'mousedown', 'mouseup', 'click'];

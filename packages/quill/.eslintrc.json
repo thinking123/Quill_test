@@ -2,8 +2,7 @@
   "extends": [
     "eslint:recommended",
     "plugin:prettier/recommended",
-    "plugin:import/recommended",
-    "plugin:require-extensions/recommended"
+    "plugin:import/recommended"
   ],
   "env": {
     "browser": true,

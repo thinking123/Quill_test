@@ -1,7 +1,7 @@
-import Block from '../blots/block.js';
-import Container from '../blots/container.js';
-import type Scroll from '../blots/scroll.js';
-import Quill from '../core/quill.js';
+import Block from '../blots/block';
+import Container from '../blots/container';
+import type Scroll from '../blots/scroll';
+import Quill from '../core/quill';
 
 class ListContainer extends Container {}
 ListContainer.blotName = 'list-container';

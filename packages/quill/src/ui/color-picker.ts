@@ -1,4 +1,4 @@
-import Picker from './picker.js';
+import Picker from './picker';
 
 class ColorPicker extends Picker {
   constructor(select: HTMLSelectElement, label: string) {

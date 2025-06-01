@@ -1,4 +1,4 @@
-import Block from '../blots/block.js';
+import Block from '../blots/block';
 
 class Blockquote extends Block {
   static blotName = 'blockquote';

@@ -1,6 +1,6 @@
 import type { LinkedList } from 'parchment';
-import Block from '../blots/block.js';
-import Container from '../blots/container.js';
+import Block from '../blots/block';
+import Container from '../blots/container';
 
 class TableCell extends Block {
   static blotName = 'table';

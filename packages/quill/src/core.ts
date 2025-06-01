@@ -1,30 +1,30 @@
-import Quill, { Parchment, Range } from './core/quill.js';
+import Quill, { Parchment, Range } from './core/quill';
 import type {
   Bounds,
   DebugLevel,
   EmitterSource,
   ExpandedQuillOptions,
   QuillOptions,
-} from './core/quill.js';
+} from './core/quill';
 
-import Block, { BlockEmbed } from './blots/block.js';
-import Break from './blots/break.js';
-import Container from './blots/container.js';
-import Cursor from './blots/cursor.js';
-import Embed from './blots/embed.js';
-import Inline from './blots/inline.js';
-import Scroll from './blots/scroll.js';
-import TextBlot from './blots/text.js';
+import Block, { BlockEmbed } from './blots/block';
+import Break from './blots/break';
+import Container from './blots/container';
+import Cursor from './blots/cursor';
+import Embed from './blots/embed';
+import Inline from './blots/inline';
+import Scroll from './blots/scroll';
+import TextBlot from './blots/text';
 
-import Clipboard from './modules/clipboard.js';
-import History from './modules/history.js';
-import Keyboard from './modules/keyboard.js';
-import Uploader from './modules/uploader.js';
+import Clipboard from './modules/clipboard';
+import History from './modules/history';
+import Keyboard from './modules/keyboard';
+import Uploader from './modules/uploader';
 import Delta, { Op, OpIterator, AttributeMap } from 'quill-delta';
-import Input from './modules/input.js';
-import UINode from './modules/uiNode.js';
+import Input from './modules/input';
+import UINode from './modules/uiNode';
 
-export { default as Module } from './core/module.js';
+export { default as Module } from './core/module';
 export { Delta, Op, OpIterator, AttributeMap, Parchment, Range };
 export type {
   Bounds,

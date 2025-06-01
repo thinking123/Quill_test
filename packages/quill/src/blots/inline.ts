@@ -1,7 +1,7 @@
 import { EmbedBlot, InlineBlot, Scope } from 'parchment';
 import type { BlotConstructor } from 'parchment';
-import Break from './break.js';
-import Text from './text.js';
+import Break from './break';
+import Text from './text';
 
 class Inline extends InlineBlot {
   static allowedChildren: BlotConstructor[] = [Inline, Break, EmbedBlot, Text];

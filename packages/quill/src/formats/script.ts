@@ -1,4 +1,4 @@
-import Inline from '../blots/inline.js';
+import Inline from '../blots/inline';
 
 class Script extends Inline {
   static blotName = 'script';
