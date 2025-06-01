@@ -31,6 +31,7 @@ class ScrollBlot extends ParentBlot implements Root {
     // @ts-expect-error scroll is the root with no parent
     super(null, node);
     this.scroll = this;
+
     this.build();
     this.observer = new MutationObserver((mutations: MutationRecord[]) => {
       this.update(mutations);
