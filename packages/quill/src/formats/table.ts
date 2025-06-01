@@ -1,4 +1,4 @@
-import type { LinkedList } from 'parchment';
+import type { LinkedList } from '../parchment';
 import Block from '../blots/block';
 import Container from '../blots/container';
 

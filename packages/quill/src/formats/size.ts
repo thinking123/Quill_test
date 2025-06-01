@@ -1,4 +1,4 @@
-import { ClassAttributor, Scope, StyleAttributor } from 'parchment';
+import { ClassAttributor, Scope, StyleAttributor } from '../parchment';
 
 const SizeClass = new ClassAttributor('size', 'ql-size', {
   scope: Scope.INLINE,

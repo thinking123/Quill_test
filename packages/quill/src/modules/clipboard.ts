@@ -1,4 +1,4 @@
-import type { ScrollBlot } from 'parchment';
+import type { ScrollBlot } from '../parchment';
 import {
   Attributor,
   BlockBlot,
@@ -6,7 +6,7 @@ import {
   EmbedBlot,
   Scope,
   StyleAttributor,
-} from 'parchment';
+} from '../parchment';
 import Delta from 'quill-delta';
 import { BlockEmbed } from '../blots/block';
 import type { EmitterSource } from '../core/emitter';

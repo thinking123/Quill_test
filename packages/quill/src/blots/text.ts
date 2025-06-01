@@ -1,4 +1,4 @@
-import { TextBlot } from 'parchment';
+import { TextBlot } from '../parchment';
 
 class Text extends TextBlot {}
 

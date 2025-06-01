@@ -1,7 +1,7 @@
 import { cloneDeep, isEqual } from 'lodash-es';
 import Delta, { AttributeMap } from 'quill-delta';
-import { EmbedBlot, Scope, TextBlot } from 'parchment';
-import type { Blot, BlockBlot } from 'parchment';
+import { EmbedBlot, Scope, TextBlot } from '../parchment';
+import type { Blot, BlockBlot } from '../parchment';
 import Quill from '../core/quill';
 import logger from '../core/logger';
 import Module from '../core/module';

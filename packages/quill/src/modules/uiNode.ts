@@ -1,4 +1,4 @@
-import { ParentBlot } from 'parchment';
+import { ParentBlot } from '../parchment';
 import Module from '../core/module';
 import Quill from '../core/quill';
 

@@ -1,5 +1,5 @@
 import Delta from 'quill-delta';
-import { EmbedBlot, Scope } from 'parchment';
+import { EmbedBlot, Scope } from '../parchment';
 import Quill from '../core/quill';
 import logger from '../core/logger';
 import Module from '../core/module';

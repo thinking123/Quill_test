@@ -1,5 +1,5 @@
 import { merge } from 'lodash-es';
-import * as Parchment from 'parchment';
+import * as Parchment from '../parchment';
 import type { Op } from 'quill-delta';
 import Delta from 'quill-delta';
 import type { BlockEmbed } from '../blots/block';
@@ -111,7 +111,7 @@ class Quill {
 
   static import(name: 'core/module'): typeof Module;
   static import(name: `themes/${string}`): typeof Theme;
-  static import(name: 'parchment'): typeof Parchment;
+  static import(name: '../parchment'): typeof Parchment;
   static import(name: 'delta'): typeof Delta;
   static import(name: string): unknown;
   static import(name: string) {
@@ -148,6 +148,8 @@ class Quill {
         // register(Blot | Attributor, overwrite)
         this.register(`formats/${name}`, target, overwrite);
       } else {
+        // 注册内容
+        // 'attributors/attribute/direction': DirectionAttribute, overwrite:true
         Object.keys(target).forEach((key) => {
           this.register(key, target[key], overwrite);
         });

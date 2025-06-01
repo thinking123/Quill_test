@@ -1,5 +1,5 @@
-import type { ScrollBlot } from 'parchment';
-import { EmbedBlot } from 'parchment';
+import type { ScrollBlot } from '../parchment';
+import { EmbedBlot } from '../parchment';
 import TextBlot from './text';
 
 const GUARD_TEXT = '\uFEFF';

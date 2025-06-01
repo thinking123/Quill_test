@@ -1,4 +1,4 @@
-import { Scope } from 'parchment';
+import { Scope } from '../parchment';
 import type Delta from 'quill-delta';
 import Module from '../core/module';
 import Quill from '../core/quill';

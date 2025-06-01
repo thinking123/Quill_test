@@ -1,4 +1,4 @@
-import { ClassAttributor, Scope } from 'parchment';
+import { ClassAttributor, Scope } from '../parchment';
 
 class IndentAttributor extends ClassAttributor {
   add(node: HTMLElement, value: string | number) {

@@ -1,4 +1,4 @@
-import { ClassAttributor, Scope, StyleAttributor } from 'parchment';
+import { ClassAttributor, Scope, StyleAttributor } from '../parchment';
 
 class ColorAttributor extends StyleAttributor {
   value(domNode: HTMLElement) {

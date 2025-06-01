@@ -1,5 +1,11 @@
-import { ContainerBlot, LeafBlot, Scope, ScrollBlot } from 'parchment';
-import type { Blot, Parent, EmbedBlot, ParentBlot, Registry } from 'parchment';
+import { ContainerBlot, LeafBlot, Scope, ScrollBlot } from '../parchment';
+import type {
+  Blot,
+  Parent,
+  EmbedBlot,
+  ParentBlot,
+  Registry,
+} from '../parchment';
 import Delta, { AttributeMap, Op } from 'quill-delta';
 import Emitter from '../core/emitter';
 import type { EmitterSource } from '../core/emitter';

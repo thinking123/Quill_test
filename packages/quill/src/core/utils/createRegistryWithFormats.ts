@@ -1,4 +1,4 @@
-import { Registry } from 'parchment';
+import { Registry } from '../../parchment';
 
 const MAX_REGISTER_ITERATIONS = 100;
 const CORE_FORMATS = ['block', 'break', 'cursor', 'inline', 'scroll', 'text'];
@@ -24,7 +24,7 @@ const createRegistryWithFormats = (
     let iterations = 0;
     while (format) {
       registry.register(format);
-      format = 'blotName' in format ? format.requiredContainer ?? null : null;
+      format = 'blotName' in format ? (format.requiredContainer ?? null) : null;
 
       iterations += 1;
       if (iterations > MAX_REGISTER_ITERATIONS) {
