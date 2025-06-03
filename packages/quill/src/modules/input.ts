@@ -1,4 +1,4 @@
-import Delta from 'quill-delta';
+import Delta from '../delta';
 import Module from '../core/module';
 import Quill from '../core/quill';
 import type { Range } from '../core/selection';

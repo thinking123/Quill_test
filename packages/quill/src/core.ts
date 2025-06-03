@@ -20,7 +20,7 @@ import Clipboard from './modules/clipboard';
 import History from './modules/history';
 import Keyboard from './modules/keyboard';
 import Uploader from './modules/uploader';
-import Delta, { Op, OpIterator, AttributeMap } from 'quill-delta';
+import Delta, { Op, OpIterator, AttributeMap } from './delta';
 import Input from './modules/input';
 import UINode from './modules/uiNode';
 

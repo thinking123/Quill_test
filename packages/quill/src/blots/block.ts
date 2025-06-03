@@ -6,7 +6,7 @@ import {
   Scope,
 } from '../parchment';
 import type { Blot, Parent } from '../parchment';
-import Delta from 'quill-delta';
+import Delta from '../delta';
 import Break from './break';
 import Inline from './inline';
 import TextBlot from './text';

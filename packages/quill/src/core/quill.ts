@@ -1,7 +1,7 @@
 import { merge } from 'lodash-es';
 import * as Parchment from '../parchment';
-import type { Op } from 'quill-delta';
-import Delta from 'quill-delta';
+import type { Op } from '../delta';
+import Delta from '../delta';
 import type { BlockEmbed } from '../blots/block';
 import type Block from '../blots/block';
 import type Scroll from '../blots/scroll';

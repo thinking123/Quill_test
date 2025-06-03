@@ -1,4 +1,4 @@
-import Delta from 'quill-delta';
+import Delta from '../delta';
 import type Quill from '../core/quill';
 import Emitter from '../core/emitter';
 import Module from '../core/module';

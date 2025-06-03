@@ -1,7 +1,7 @@
 import { cloneDeep, isEqual, merge } from 'lodash-es';
 import { LeafBlot, EmbedBlot, Scope, ParentBlot } from '../parchment';
 import type { Blot } from '../parchment';
-import Delta, { AttributeMap, Op } from 'quill-delta';
+import Delta, { AttributeMap, Op } from '../delta';
 import Block, { BlockEmbed, bubbleFormats } from '../blots/block';
 import Break from '../blots/break';
 import CursorBlot from '../blots/cursor';

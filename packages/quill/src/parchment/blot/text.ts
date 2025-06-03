@@ -14,7 +14,7 @@ class TextBlot extends LeafBlot implements Leaf {
     return domNode.data;
   }
 
-  public domNode!: Text;
+  // public domNode!: Text;
   protected text: string;
 
   constructor(scroll: Root, node: Node) {

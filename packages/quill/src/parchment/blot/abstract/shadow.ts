@@ -50,10 +50,12 @@ class ShadowBlot implements Blot {
   get statics(): any {
     return this.constructor;
   }
-  constructor(
-    public scroll: Root,
-    public domNode: Node,
-  ) {
+
+  public scroll: Root;
+  public domNode: Node;
+  constructor(scroll: Root, domNode: Node) {
+    this.scroll = scroll;
+    this.domNode = domNode;
     Registry.blots.set(domNode, this);
     this.prev = null;
     this.next = null;

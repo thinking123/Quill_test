@@ -7,7 +7,7 @@ import {
   Scope,
   StyleAttributor,
 } from '../parchment';
-import Delta from 'quill-delta';
+import Delta from '../delta';
 import { BlockEmbed } from '../blots/block';
 import type { EmitterSource } from '../core/emitter';
 import logger from '../core/logger';

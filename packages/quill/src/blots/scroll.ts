@@ -6,7 +6,7 @@ import type {
   ParentBlot,
   Registry,
 } from '../parchment';
-import Delta, { AttributeMap, Op } from 'quill-delta';
+import Delta, { AttributeMap, Op } from '../delta';
 import Emitter from '../core/emitter';
 import type { EmitterSource } from '../core/emitter';
 import Block, { BlockEmbed, bubbleFormats } from './block';
