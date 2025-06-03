@@ -208,7 +208,7 @@ class Quill {
     this.container.classList.add('ql-container');
     this.container.innerHTML = '';
     instances.set(this.container, this);
-    this.root = this.addContainer('ql-editor');
+    this.root = this.addContainer('ql-editor'); // root=插入 ql-editor
     this.root.classList.add('ql-blank');
     this.emitter = new Emitter();
     const scrollBlotName = Parchment.ScrollBlot.blotName;

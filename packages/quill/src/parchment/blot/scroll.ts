@@ -185,6 +185,7 @@ class ScrollBlot extends ParentBlot implements Root {
     mutations?: MutationRecord[],
     context: { [key: string]: any } = {},
   ): void {
+    console.log('fk scorll update');
     mutations = mutations || this.observer.takeRecords();
     const mutationsMap = new WeakMap();
     mutations
