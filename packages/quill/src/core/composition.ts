@@ -11,7 +11,7 @@ class Composition {
   ) {
     this.setupListeners();
   }
-
+  // 将浏览器的 输入法，例如中文，收入拼音之后 触发 compositionstart，enter 之后才会触发 compositionend
   private setupListeners() {
     this.scroll.domNode.addEventListener('compositionstart', (event) => {
       if (!this.isComposing) {

@@ -907,9 +907,9 @@ function modify(
   }
   if (change.length() > 0) {
     const args = [Emitter.events.TEXT_CHANGE, change, oldDelta, source];
-    this.emitter.emit(Emitter.events.EDITOR_CHANGE, ...args);
+    this.emitter.emit(Emitter.events.EDITOR_CHANGE, ...args); // history，ui 更新
     if (source !== Emitter.sources.SILENT) {
-      this.emitter.emit(...args);
+      this.emitter.emit(...args); // client listener
     }
   }
   return change;

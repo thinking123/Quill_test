@@ -16,7 +16,8 @@ export interface RegistryInterface {
 }
 
 export default class Registry implements RegistryInterface {
-  public static blots = new WeakMap<Node, Blot>();
+  // <htmlNode, blot>
+  public static blots = new WeakMap<Node, Blot>(); // <HtmlNode, blot>
 
   public static find(node?: Node | null, bubble = false): Blot | null {
     if (node == null) {
@@ -52,12 +53,13 @@ export default class Registry implements RegistryInterface {
       throw new ParchmentError(`Unable to create ${input} blot`);
     }
     const blotClass = match as BlotConstructor;
+    // 获取或者创建 html node : 
     const node =
       // @ts-expect-error Fix me later
       input instanceof Node || input.nodeType === Node.TEXT_NODE
         ? input
-        : blotClass.create(value);
-
+        : blotClass.create(value); 
+    // 创建对应的 blot
     const blot = new blotClass(scroll, node as Node, value);
     Registry.blots.set(blot.domNode, blot);
     return blot;

@@ -43,7 +43,7 @@ class ScrollBlot extends ParentBlot implements Root {
   public create(input: Node | string | Scope, value?: any): Blot {
     return this.registry.create(this, input, value);
   }
-
+  // find 对应 htmlnode 的blot ，可以冒泡 search
   public find(node: Node | null, bubble = false): Blot | null {
     const blot = this.registry.find(node, bubble);
     if (!blot) {
@@ -103,7 +103,8 @@ class ScrollBlot extends ParentBlot implements Root {
     this.update();
     super.insertAt(index, value, def);
   }
-
+  // 记录所有的 observer 的 修改的blot(包括 childblot ,previousSibling, prev ) 执行 ：blot.optimize(context)
+  // blot.optimize(context) : 执行 add ， modify , delete ,wrap ,unwarp ： blot 和 htmlnode 
   public optimize(context?: { [key: string]: any }): void;
   public optimize(
     mutations: MutationRecord[],
@@ -154,7 +155,7 @@ class ScrollBlot extends ParentBlot implements Root {
         if (blot == null) {
           return;
         }
-        if (blot.domNode === mutation.target) {
+        if (blot.domNode === mutation.target) {// mark addedNodes 和 previousSibling,prev,blot
           if (mutation.type === 'childList') {
             mark(this.find(mutation.previousSibling, false));
             Array.from(mutation.addedNodes).forEach((node: Node) => {
@@ -180,7 +181,7 @@ class ScrollBlot extends ParentBlot implements Root {
       }
     }
   }
-
+  // 对 add del 的数据执行 删除和添加，执行 optimize
   public update(
     mutations?: MutationRecord[],
     context: { [key: string]: any } = {},
@@ -204,7 +205,7 @@ class ScrollBlot extends ParentBlot implements Root {
       })
       .forEach((blot: Blot | null) => {
         if (blot != null && blot !== this && mutationsMap.has(blot.domNode)) {
-          blot.update(mutationsMap.get(blot.domNode) || [], context);
+          blot.update(mutationsMap.get(blot.domNode) || [], context); // 更新sub blot
         }
       });
     context.mutationsMap = mutationsMap;

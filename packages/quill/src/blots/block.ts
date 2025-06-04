@@ -77,7 +77,7 @@ class Block extends BlockBlot {
     const { head } = this.children;
     super.insertBefore(blot, ref);
     if (head instanceof Break) {
-      head.remove();
+      head.remove(); // 如果已经插入内容，删除 换行
     }
     this.cache = {};
   }

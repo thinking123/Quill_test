@@ -236,7 +236,7 @@ class Scroll extends ScrollBlot {
     // @ts-expect-error TODO: make descendant() generic
     return this.descendant(isLine, index);
   }
-
+  // 返回所有的line 的blot
   lines(index = 0, length = Number.MAX_VALUE): (Block | BlockEmbed)[] {
     const getLines = (
       blot: ParentBlot,
@@ -308,7 +308,7 @@ class Scroll extends ScrollBlot {
     }
     super.update(mutations.concat([])); // pass copy
     if (mutations.length > 0) {
-      this.emitter.emit(Emitter.events.SCROLL_UPDATE, source, mutations);
+      this.emitter.emit(Emitter.events.SCROLL_UPDATE, source, mutations);// editor ,selection
     }
   }
 

@@ -178,7 +178,7 @@ class Keyboard extends Module<KeyboardOptions> {
       // https://bugs.webkit.org/show_bug.cgi?id=165004
       const isComposing =
         evt.keyCode === 229 && (evt.key === 'Enter' || evt.key === 'Backspace');
-      if (isComposing) return;
+      if (isComposing) return;//坐在输入拼音
 
       const bindings = (this.bindings[evt.key] || []).concat(
         this.bindings[evt.which] || [],
@@ -186,7 +186,7 @@ class Keyboard extends Module<KeyboardOptions> {
       const matches = bindings.filter((binding) =>
         Keyboard.match(evt, binding),
       );
-      if (matches.length === 0) return;
+      if (matches.length === 0) return;//是否是快捷键
       // @ts-expect-error
       const blot = Quill.find(evt.target, true);
       if (blot && blot.scroll !== this.quill.scroll) return;

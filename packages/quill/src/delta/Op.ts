@@ -9,7 +9,6 @@ interface Op {
   attributes?: AttributeMap;
 }
 
-namespace Op {
   export function length(op: Op): number {
     if (typeof op.delete === 'number') {
       return op.delete;
@@ -21,6 +20,7 @@ namespace Op {
       return typeof op.insert === 'string' ? op.insert.length : 1;
     }
   }
+const Op = {
+  length
 }
-
 export default Op;

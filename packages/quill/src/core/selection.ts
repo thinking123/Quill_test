@@ -247,7 +247,7 @@ class Selection {
     debug.info('getNativeRange', range);
     return range;
   }
-
+  // 返回选择内容的 范围
   getRange(): [Range, NormalizedRange] | [null, null] {
     const root = this.scroll.domNode;
     if ('isConnected' in root && !root.isConnected) {
@@ -465,7 +465,7 @@ class Selection {
         cloneDeep(oldRange),
         source,
       ];
-      this.emitter.emit(Emitter.events.EDITOR_CHANGE, ...args);
+      this.emitter.emit(Emitter.events.EDITOR_CHANGE, ...args);// history，ui 更新
       if (source !== Emitter.sources.SILENT) {
         this.emitter.emit(...args);
       }

@@ -104,7 +104,7 @@ class BlockBlot extends ParentBlot implements Formattable {
     mutations: MutationRecord[],
     context: { [key: string]: any },
   ): void {
-    super.update(mutations, context);
+    super.update(mutations, context); // 根据 mutations 执行删除和add blot
     const attributeChanged = mutations.some(
       (mutation) =>
         mutation.target === this.domNode && mutation.type === 'attributes',

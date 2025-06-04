@@ -120,7 +120,7 @@ class ParentBlot extends ShadowBlot implements Parent {
       return [null, -1];
     }
   }
-
+  // 返回符合条件(criteria)的 child blots，递归遍历获取 
   public descendants<T extends Blot>(
     criteria: new (...args: any[]) => T,
     index?: number,
@@ -178,6 +178,7 @@ class ParentBlot extends ShadowBlot implements Parent {
       if (allowed) {
         return;
       }
+      // 如果不是allow的 blot ，进行拆分和删除
       if (child.statics.scope === Scope.BLOCK_BLOT) {
         if (child.next != null) {
           this.splitAfter(child);
@@ -218,7 +219,7 @@ class ParentBlot extends ShadowBlot implements Parent {
       this.appendChild(blot);
     }
   }
-
+  // 插入到双向链表 和 html 
   public insertBefore(childBlot: Blot, refBlot?: Blot | null): void {
     if (childBlot.parent != null) {
       childBlot.parent.children.remove(childBlot);
@@ -257,7 +258,7 @@ class ParentBlot extends ShadowBlot implements Parent {
       this.domNode.insertBefore(this.uiNode, this.domNode.firstChild);
     }
     if (this.children.length === 0) {
-      if (this.statics.defaultChild != null) {
+      if (this.statics.defaultChild != null) { // 如果空，创建默认blot
         const child = this.scroll.create(this.statics.defaultChild.blotName);
         this.appendChild(child);
         // TODO double check if necessary
@@ -365,17 +366,17 @@ class ParentBlot extends ShadowBlot implements Parent {
         blot.domNode.parentNode == null ||
         blot.domNode.parentNode === this.domNode
       ) {
-        blot.detach();
+        blot.detach(); // 删除
       }
     });
     addedNodes
       .filter((node) => {
         return node.parentNode === this.domNode && node !== this.uiNode;
       })
-      .sort((a, b) => {
+      .sort((a, b) => { // 按照dom顺序排序 [a,b]
         if (a === b) {
           return 0;
-        }
+        }// b 在 a 之后
         if (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING) {
           return 1;
         }
@@ -386,7 +387,7 @@ class ParentBlot extends ShadowBlot implements Parent {
         if (node.nextSibling != null) {
           refBlot = this.scroll.find(node.nextSibling);
         }
-        const blot = makeAttachedBlot(node, this.scroll);
+        const blot = makeAttachedBlot(node, this.scroll);// 创建挂载 blot
         if (blot.next !== refBlot || blot.next == null) {
           if (blot.parent != null) {
             blot.parent.removeChild(this);

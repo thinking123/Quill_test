@@ -9,7 +9,7 @@ class ShadowBlot implements Blot {
   public static requiredContainer: BlotConstructor;
   public static scope: Scope;
   public static tagName: string | string[];
-
+  // 创建对应的 html node 
   public static create(rawValue?: unknown): Node {
     if (this.tagName == null) {
       throw new ParchmentError('Blot definition missing tagName');
