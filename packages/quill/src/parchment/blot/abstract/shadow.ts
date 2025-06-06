@@ -81,7 +81,15 @@ class ShadowBlot implements Blot {
     const blot = this.isolate(index, length);
     blot.remove();
   }
-
+  /**
+   * 
+类型	例子	执行效果
+Scope.BLOT	'bold'	把 [index, length] wrap 在 <strong> 中
+Scope.ATTRIBUTE	'color':'red'	把 [index, length] 放入一个新的 parent，并设置 color: red 属性
+   * @param length 
+   * @param name 
+   * @param value 
+   */
   public formatAt(
     index: number,
     length: number,
@@ -107,7 +115,7 @@ class ShadowBlot implements Blot {
     const ref = this.split(index);
     this.parent.insertBefore(blot, ref || undefined);
   }
-
+  // 拆分: a = a - b - c ,返回 b
   public isolate(index: number, length: number): Blot {
     const target = this.split(index);
     if (target == null) {
@@ -120,14 +128,14 @@ class ShadowBlot implements Blot {
   public length(): number {
     return 1;
   }
-
+  // 获取在 scroll 的 index length
   public offset(root: Blot = this.parent): number {
     if (this.parent == null || this === root) {
       return 0;
     }
     return this.parent.children.offset(this) + this.parent.offset(root);
   }
-
+  // 当前blot 是否必须wrap
   public optimize(_context?: { [key: string]: any }): void {
     if (
       this.statics.requiredContainer &&
@@ -164,7 +172,7 @@ class ShadowBlot implements Blot {
   ): void {
     // Nothing to do by default
   }
-
+  // 创建wrap 包括当前 blot，插入到当前blot pos
   public wrap(name: string | Parent, value?: any): Parent {
     const wrapper =
       typeof name === 'string'

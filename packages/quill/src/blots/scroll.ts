@@ -228,7 +228,7 @@ class Scroll extends ScrollBlot {
     const [blot, offset] = last;
     return blot instanceof LeafBlot ? [blot, offset] : [null, -1];
   }
-
+  // 返回children 内是行的blot, index 在blot 的offset: [blot ,offset]
   line(index: number): [Block | BlockEmbed | null, number] {
     if (index === this.length()) {
       return this.line(index - 1);

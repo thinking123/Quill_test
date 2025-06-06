@@ -83,7 +83,9 @@ class InlineBlot extends ParentBlot implements Formattable {
       }
     }
   }
-
+  /**
+   * 返回所有的attr ，以及 format ，例如 {bold: true }
+   */
   public formats(): { [index: string]: any } {
     const formats = this.attributes.values();
     const format = this.statics.formats(this.domNode, this.scroll);
@@ -109,7 +111,11 @@ class InlineBlot extends ParentBlot implements Formattable {
       super.formatAt(index, length, name, value);
     }
   }
-
+  /**
+   * 1.super.optimize(context)
+   * 2.如果没有attr format unwrap 成span
+   * 3. 和下一个相同的类型 合并
+   */
   public optimize(context: { [key: string]: any }): void {
     super.optimize(context);
     const formats = this.formats();

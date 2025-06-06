@@ -31,6 +31,7 @@ class Block extends BlockBlot {
   formatAt(index: number, length: number, name: string, value: unknown) {
     if (length <= 0) return;
     if (this.scroll.query(name, Scope.BLOCK)) {
+      // 对应block 类型，只能在最后面格式
       if (index + length === this.length()) {
         this.format(name, value);
       }
@@ -53,19 +54,19 @@ class Block extends BlockBlot {
     }
     if (value.length === 0) return;
     const lines = value.split('\n');
-    const text = lines.shift() as string;
+    const text = lines.shift() as string; // 获取第一个line
     if (text.length > 0) {
       if (index < this.length() - 1 || this.children.tail == null) {
-        super.insertAt(Math.min(index, this.length() - 1), text);
+        super.insertAt(Math.min(index, this.length() - 1), text);//插入到之间，或者child空，插入第一个
       } else {
-        this.children.tail.insertAt(this.children.tail.length(), text);
+        this.children.tail.insertAt(this.children.tail.length(), text);// 插入到最后一个内
       }
       this.cache = {};
     }
     // TODO: Fix this next time the file is edited.
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     let block: Blot | this = this;
-    lines.reduce((lineIndex, line) => {
+    lines.reduce((lineIndex, line) => {// 将lines 按照\n分开，create new line 插入
       // @ts-expect-error Fix me later
       block = block.split(lineIndex, true);
       block.insertAt(0, line);
@@ -81,7 +82,7 @@ class Block extends BlockBlot {
     }
     this.cache = {};
   }
-
+  // 所有长度包括遍历children 长度
   length() {
     if (this.cache.length == null) {
       this.cache.length = super.length() + NEWLINE_LENGTH;
@@ -191,7 +192,9 @@ function blockDelta(blot: BlockBlot, filter = true) {
     }, new Delta())
     .insert('\n', bubbleFormats(blot));
 }
-
+/**
+ * 向上冒泡合并formats，parent 必须是相同的scope 类型，而且不是root：scroll
+ */
 function bubbleFormats(
   blot: Blot | null,
   formats: Record<string, unknown> = {},

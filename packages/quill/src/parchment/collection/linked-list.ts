@@ -123,7 +123,12 @@ class LinkedList<T extends LinkedNode> {
       return ret;
     };
   }
-
+  /**
+   * search index 在children 的范围内的item，返回[item,在item 的偏移量],inclusive是否包括边界
+   * @param index 在 范围 children = [0 , all children length]
+   * @param inclusive 
+   * @returns 
+   */
   public find(index: number, inclusive = false): [T | null, number] {
     const next = this.iterator();
     let cur = next();
@@ -137,7 +142,7 @@ class LinkedList<T extends LinkedNode> {
       ) {
         return [cur, index];
       }
-      index -= length;
+      index -= length; // 减去偏移量
       cur = next();
     }
     return [null, 0];
@@ -151,7 +156,7 @@ class LinkedList<T extends LinkedNode> {
       cur = next();
     }
   }
-
+  // 在整个范围内遍历 从index 起点，长度length 范围内的blot，callback参数(blot,在blot的起始offset，在blot内的length)
   public forEachAt(
     index: number,
     length: number,
@@ -161,7 +166,7 @@ class LinkedList<T extends LinkedNode> {
       return;
     }
     const [startNode, offset] = this.find(index);
-    let curIndex = index - offset;
+    let curIndex = index - offset; // 当前node 在children 内的index
     const next = this.iterator(startNode);
     let cur = next();
     while (cur && curIndex < index + length) {

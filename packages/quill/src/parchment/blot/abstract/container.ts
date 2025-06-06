@@ -9,7 +9,7 @@ class ContainerBlot extends ParentBlot {
 
   public prev!: BlockBlot | ContainerBlot | null;
   public next!: BlockBlot | ContainerBlot | null;
-
+  // 是否可以合并：next 并且next blot 类型相同
   public checkMerge(): boolean {
     return (
       this.next !== null && this.next.statics.blotName === this.statics.blotName
@@ -35,7 +35,10 @@ class ContainerBlot extends ParentBlot {
     super.insertAt(index, value, def);
     this.enforceAllowedChildren();
   }
-
+  /**
+   * 1. super.optimize(context)
+   * 2. 合并 next
+   */
   public optimize(context: { [key: string]: any }): void {
     super.optimize(context);
     if (this.children.length > 0 && this.next != null && this.checkMerge()) {

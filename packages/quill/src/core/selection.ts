@@ -354,7 +354,7 @@ class Selection {
       ...getPosition(range.index + range.length, true),
     ];
   }
-
+  // 设置选择内容
   setNativeRange(
     startNode: Node | null,
     startOffset?: number,

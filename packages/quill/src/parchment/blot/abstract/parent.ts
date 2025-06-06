@@ -3,7 +3,7 @@ import ParchmentError from '../../error';
 import Scope from '../../scope';
 import type { Blot, BlotConstructor, Parent, Root } from './blot';
 import ShadowBlot from './shadow';
-
+// 创建htmlnode 对应的 blot，并且挂载
 function makeAttachedBlot(node: Node, scroll: Root): Blot {
   const found = scroll.find(node);
   if (found) return found;
@@ -43,7 +43,7 @@ class ParentBlot extends ShadowBlot implements Parent {
     // this.domNode = domNode as any;
     this.build();
   }
-
+  // other 插入到 children ,children = [..., other] ,并且插入对于的html node 
   public appendChild(other: Blot): void {
     this.insertBefore(other);
   }
@@ -165,7 +165,9 @@ class ParentBlot extends ShadowBlot implements Parent {
     });
     super.detach();
   }
-
+  /**
+   *  强制确保当前节点的子节点都是“被允许”的类型
+   */
   public enforceAllowedChildren(): void {
     let done = false;
     this.children.forEach((child: Blot) => {
@@ -183,7 +185,7 @@ class ParentBlot extends ShadowBlot implements Parent {
         if (child.next != null) {
           this.splitAfter(child);
         }
-        if (child.prev != null) {
+        if (child.prev != null) { // child.next的内容已经重新插入到new blot 下
           this.splitAfter(child.prev);
         }
         child.parent.unwrap();
@@ -209,9 +211,9 @@ class ParentBlot extends ShadowBlot implements Parent {
 
   public insertAt(index: number, value: string, def?: any): void {
     const [child, offset] = this.children.find(index);
-    if (child) {
+    if (child) {// 在child 内插入
       child.insertAt(offset, value, def);
-    } else {
+    } else {// 在children 内插入：插入到[...,blot]
       const blot =
         def == null
           ? this.scroll.create('text', value)
@@ -250,11 +252,16 @@ class ParentBlot extends ShadowBlot implements Parent {
       targetParent.insertBefore(child, refNode);
     });
   }
-
+  /**
+   * 1. 执行 是否需要 wrap
+   * 2. check 子节点都是“被允许”的类型
+   * 3. 更新uinode pos，必须是 firstChild，更新
+   * 4. 插入默认 child
+   */
   public optimize(context?: { [key: string]: any }): void {
     super.optimize(context);
     this.enforceAllowedChildren();
-    if (this.uiNode != null && this.uiNode !== this.domNode.firstChild) {
+    if (this.uiNode != null && this.uiNode !== this.domNode.firstChild) { // attachUI,uiNode 是 firstChild，更新
       this.domNode.insertBefore(this.uiNode, this.domNode.firstChild);
     }
     if (this.children.length === 0) {
@@ -292,7 +299,7 @@ class ParentBlot extends ShadowBlot implements Parent {
     }
     return super.replaceWith(replacement);
   }
-
+  // 将children ，从 index 所在的blot 分开，前面部分保持this，后面部分插入到新的clone(this),返回后面的blot
   public split(index: number, force = false): Blot | null {
     if (!force) {
       if (index === 0) {
@@ -314,7 +321,7 @@ class ParentBlot extends ShadowBlot implements Parent {
     });
     return after;
   }
-
+  // 将 child 和 之后的 blot 插入到 this.clone 
   public splitAfter(child: Blot): Parent {
     const after = this.clone() as ParentBlot;
     while (child.next != null) {
@@ -325,14 +332,14 @@ class ParentBlot extends ShadowBlot implements Parent {
     }
     return after;
   }
-
+  // 将当前blot 删除，并且所有的 child blot 插入到 parent
   public unwrap(): void {
     if (this.parent) {
       this.moveChildren(this.parent, this.next || undefined);
     }
     this.remove();
   }
-
+  // 对于add 和 del 的 blot 执行 挂载 和卸载，并且创建对应的 node
   public update(
     mutations: MutationRecord[],
     _context: { [key: string]: any },
@@ -345,11 +352,12 @@ class ParentBlot extends ShadowBlot implements Parent {
         removedNodes.push(...mutation.removedNodes);
       }
     });
+    // 删除node 对应的 blot ，并且卸载
     removedNodes.forEach((node: Node) => {
       // Check node has actually been removed
       // One exception is Chrome does not immediately remove IFRAMEs
       // from DOM but MutationRecord is correct in its reported removal
-      if (
+      if ( // 如果html node 已经删除了，return
         node.parentNode != null &&
         // @ts-expect-error Fix me later
         node.tagName !== 'IFRAME' &&

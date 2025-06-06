@@ -158,7 +158,7 @@ class Editor {
   getContents(index: number, length: number): Delta {
     return this.delta.slice(index, index + length);
   }
-
+// 获取每一行的 delta:递归所有的leafblot 合并blot 返回lineDelta
   getDelta(): Delta {
     return this.scroll.lines().reduce((delta, line) => {
       return delta.concat(line.delta());
@@ -269,7 +269,7 @@ class Editor {
     const delta = new Delta().retain(index).concat(diff);
     return this.applyDelta(delta);
   }
-
+  // 更新计算 delta
   update(
     change: Delta | null,
     mutations: MutationRecord[] = [],
@@ -312,6 +312,7 @@ class Editor {
         change = oldDelta.diff(this.delta, selectionInfo);
       }
     }
+    console.log(this.delta)
     return change;
   }
 }

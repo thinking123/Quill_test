@@ -46,13 +46,17 @@ class TextBlot extends LeafBlot implements Leaf {
   public length(): number {
     return this.text.length;
   }
-
+  /**
+   * 1.super.optimize(context)
+   * 2. 更新 text，如果 空，删除
+   * 3. 合并next
+   */
   public optimize(context: { [key: string]: any }): void {
     super.optimize(context);
     this.text = this.statics.value(this.domNode);
     if (this.text.length === 0) {
       this.remove();
-    } else if (this.next instanceof TextBlot && this.next.prev === this) {
+    } else if (this.next instanceof TextBlot && this.next.prev === this) {//合并text
       this.insertAt(this.length(), (this.next as TextBlot).value());
       this.next.remove();
     }
@@ -76,7 +80,7 @@ class TextBlot extends LeafBlot implements Leaf {
     this.text = this.statics.value(this.domNode);
     return after;
   }
-
+  // 如果修改了文字，update text 属性
   public update(
     mutations: MutationRecord[],
     _context: { [key: string]: any },

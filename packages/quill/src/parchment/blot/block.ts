@@ -48,12 +48,12 @@ class BlockBlot extends ParentBlot implements Formattable {
     } else if (format instanceof Attributor) {
       this.attributes.attribute(format, value);
     } else if (name === this.statics.blotName && !value) {
-      this.replaceWith(BlockBlot.blotName);
+      this.replaceWith(BlockBlot.blotName); // 删除嵌套格式<em>text => text
     } else if (
       value &&
       (name !== this.statics.blotName || this.formats()[name] !== value)
     ) {
-      this.replaceWith(name, value);
+      this.replaceWith(name, value);// 设置嵌套格式 text => <em> text
     }
   }
 
@@ -78,7 +78,7 @@ class BlockBlot extends ParentBlot implements Formattable {
       super.formatAt(index, length, name, value);
     }
   }
-
+  // 插入到children ，如果在child的length 内，将child split，插入到split 之间
   public insertAt(index: number, value: string, def?: any): void {
     if (def == null || this.scroll.query(value, Scope.INLINE) != null) {
       // Insert text or inline
@@ -99,7 +99,7 @@ class BlockBlot extends ParentBlot implements Formattable {
     this.attributes.copy(replacement);
     return replacement;
   }
-
+  // 对 mutations 执行 add 和 del blot ，重新构建attrs
   public update(
     mutations: MutationRecord[],
     context: { [key: string]: any },

@@ -64,7 +64,9 @@ class AttributorStore {
     });
     this.attributes = {};
   }
-
+  /**
+   * 获取htmlnode 对应的属性obj {attrName:attrValue}
+   */
   public values(): { [key: string]: any } {
     return Object.keys(this.attributes).reduce(
       (attributes: { [key: string]: any }, name: string) => {

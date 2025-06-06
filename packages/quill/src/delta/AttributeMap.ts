@@ -31,7 +31,7 @@ function compose(
   }
   return Object.keys(attributes).length > 0 ? attributes : undefined;
 }
-
+// 返回 attr：如果 a 和 b 不一样的value ，如果b 不存在的key 返回 null
 function diff(
   a: AttributeMap = {},
   b: AttributeMap = {},

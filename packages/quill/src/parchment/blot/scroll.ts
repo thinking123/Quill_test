@@ -43,7 +43,9 @@ class ScrollBlot extends ParentBlot implements Root {
   public create(input: Node | string | Scope, value?: any): Blot {
     return this.registry.create(this, input, value);
   }
-  // find 对应 htmlnode 的blot ，可以冒泡 search
+  /**
+   * find 对应 htmlnode 的blot ，可以冒泡 search
+   */
   public find(node: Node | null, bubble = false): Blot | null {
     const blot = this.registry.find(node, bubble);
     if (!blot) {
@@ -186,8 +188,8 @@ class ScrollBlot extends ParentBlot implements Root {
     mutations?: MutationRecord[],
     context: { [key: string]: any } = {},
   ): void {
-    console.log('fk scorll update');
     mutations = mutations || this.observer.takeRecords();
+    // 保存对应blot 修改的htmlnodes : <blot , [htmlnode1,htmlnode2]>
     const mutationsMap = new WeakMap();
     mutations
       .map((mutation: MutationRecord) => {

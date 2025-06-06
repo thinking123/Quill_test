@@ -155,14 +155,14 @@ class Quill {
         });
       }
     } else {
-      const path = args[0];
-      const target = args[1];
+      const path = args[0];// name : 'blots/block'
+      const target = args[1]; // class : Block
       const overwrite = !!args[2];
 
       if (this.imports[path] != null && !overwrite) {
         debug.warn(`Overwriting ${path} with`, target);
       }
-      this.imports[path] = target;
+      this.imports[path] = target; // all register
       if (
         (path.startsWith('blots/') || path.startsWith('formats/')) &&
         target &&

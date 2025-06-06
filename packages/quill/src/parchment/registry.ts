@@ -99,7 +99,7 @@ export default class Registry implements RegistryInterface {
     if (match == null) {
       return null;
     }
-    if (
+    if (// scope 使用掩码，低两位type ，其他是 level, match 的type 和level 
       'scope' in match &&
       scope & Scope.LEVEL & match.scope &&
       scope & Scope.TYPE & match.scope
@@ -108,7 +108,7 @@ export default class Registry implements RegistryInterface {
     }
     return null;
   }
-
+  // 从 def register 的数据获取：blot,attr,class,tagname,
   public register(...definitions: RegistryDefinition[]): RegistryDefinition[] {
     return definitions.map((definition) => {
       const isBlot = 'blotName' in definition;
@@ -118,7 +118,7 @@ export default class Registry implements RegistryInterface {
       } else if (isBlot && definition.blotName === 'abstract') {
         throw new ParchmentError('Cannot register abstract class');
       }
-      const key = isBlot
+      const key = isBlot // blot 有属性 blotName
         ? definition.blotName
         : isAttr
           ? definition.attrName
